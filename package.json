@@ -1,0 +1,17 @@
+{
+  "name": "nighty-night",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "minecraft-protocol": "^1.57.0",
+    "minecraft-protocol-forge": "^1.0.0",
+    "properties-file": "^3.5.12"
+  }
+}
