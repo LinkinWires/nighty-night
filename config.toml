@@ -10,7 +10,7 @@ delay = 10 # delay in seconds before trying to start the Minecraft server again.
 # Launch settings
 [launch_settings]
 server_directory = "" # relative working directory of the server, it is adviced to use this instead of defining it in the launch command
-launch_command = "" # command for launching the Minecraft server
+launch_command = "java -jar server.jar nogui" # command for launching the Minecraft server
 
 # You can use this section to override server.properties settings and the default Minecraft version
 [server_properties]
