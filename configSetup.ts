@@ -2,6 +2,7 @@ import * as mc from 'minecraft-protocol';
 import { getProperties } from 'properties-file';
 
 export interface Config {
+    watchdogDelay: number,
     version: string,
     serverDir?: string,
     launchCmd: string,
@@ -19,6 +20,7 @@ const language = process.env.LANGUAGE ? process.env.LANGUAGE : 'en_US';
 
 function readEnvironmentalVariables() {
     return {
+        watchdogDelay: process.env.WATCHDOG && !isNaN(parseInt(process.env.WATCHDOG)) ? parseInt(process.env.WATCHDOG) : undefined,
         serverDir: process.env.SERVER_DIR ? process.env.SERVER_DIR : undefined,
         launchCmd: process.env.LAUNCH_CMD ? process.env.LAUNCH_CMD : undefined,
         serverVersion: process.env.SERVER_VERSION ? process.env.SERVER_VERSION : undefined,
@@ -36,6 +38,7 @@ async function readConfig() {
         const config: any = Bun.TOML.parse(configTomlText);
         
         return {
+            watchdogDelay: config.watchdog.delay && typeof config.watchdog.delay === 'number' ? config.watchdog.delay : undefined,
             serverDir: config.launch_settings.server_directory && typeof config.launch_settings.server_directory === 'string' ? config.launch_settings.server_directory : undefined,
             launchCmd: config.launch_settings.launch_command && typeof config.launch_settings.launch_command === 'string' ? config.launch_settings.launch_command : undefined,
             serverVersion: config.server_properties.server_version && typeof config.server_properties.server_version === 'string' ? config.server_properties.server_version : undefined,
@@ -84,8 +87,9 @@ async function readServerIcon(cwd?: string): Promise<string> {
 function setDefaultValues(): Config {
     const index = mc.supportedVersions.length - 1;
     return {
-        version: '1.0',
-        serverDir: undefined,
+        watchdogDelay: 10,
+        version: '1.1',
+        serverDir: '',
         launchCmd: 'java -jar server.jar nogui',
         serverVersion: mc.supportedVersions[index] ? mc.supportedVersions[index] : mc.defaultVersion,
         serverIp: '0.0.0.0',
@@ -99,11 +103,12 @@ function setDefaultValues(): Config {
 export async function setupValues(): Promise<Config> {
     const envVars = readEnvironmentalVariables();
     const configToml = await readConfig();
-    const serverProps = await readServerProperties(envVars.serverDir ? envVars.serverDir : configToml.serverDir ? configToml.serverDir : undefined);
+    const serverProps = await readServerProperties(envVars.serverDir ? envVars.serverDir : configToml.serverDir ? configToml.serverDir : '');
     const defaults = setDefaultValues();
-    const serverIcon = await readServerIcon(envVars.serverDir ? envVars.serverDir : configToml.serverDir ? configToml.serverDir : undefined);
+    const serverIcon = await readServerIcon(envVars.serverDir ? envVars.serverDir : configToml.serverDir ? configToml.serverDir : '');
 
     return {
+        watchdogDelay: envVars.watchdogDelay !== undefined ? envVars.watchdogDelay : configToml.watchdogDelay !== undefined ? configToml.watchdogDelay : defaults.watchdogDelay,
         version: defaults.version,
         serverDir: envVars.serverDir ? envVars.serverDir : configToml.serverDir ? configToml.serverDir : defaults.serverDir,
         launchCmd: envVars.launchCmd ? envVars.launchCmd : configToml.launchCmd ? configToml.launchCmd : defaults.launchCmd,

@@ -3,48 +3,66 @@
       "error": {
         "configTomlParseError": "Failed to parse config.toml: %s",
         "serverIconReadError": "Failed to read server-icon.png: %s, using default favicon instead...",
-        "serverLaunchError": "Failed to launch server: %s, restarting the mini server...",
-        "serverPropertiesParseError": "Failed to parse server.properties: %s"
+        "serverLaunchError": "Failed to launch Minecraft server: %s, restarting the mini server...",
+        "serverPropertiesParseError": "Failed to parse server.properties: %s",
+        "serverStdin": "Failed to get Minecraft server process' stdin"
+      },
+      "watchdog": {
+        "serverCrashed": "Minecraft server exited with an error. Restaring in %s seconds..."
       },
       "log": {
-        "configInit": "Initializing configs...",
+        "configInit": "Initializing config...",
         "defaultServerVersion": "Using default server version: %s",
-        "interrupt": "Received interrupt, closing server...",
-        "realServerStarting": "Received connection, statring Minecraft server in %s using this command: %s",
-        "serverInit": "Starting Nighty Night v%s...",
-        "serverRestarting": "Real server shut down, initializing the mini server again...",
-        "serverStarted": "Server with version %s started at %s:%s..."
+        "interrupt": "Received interrupt!",
+        "realServerStarting": "Statring Minecraft server in %s using this command: %s",
+        "nightyInit": "Starting Nighty Night v%s...",
+        "nightyClose": "Closing Nighty Night...",
+        "serverStop": "Shutting down mini server...",
+        "serverStopMinecraft": "Shutting down Minecraft server...",
+        "serverRestarting": "Starting the mini server again...",
+        "serverStarted": "Server with version %s started at %s:%s (start time - %s s). For help, type \"help\""
       },
       "motd": {
         "sleepPrefix": "[SLEEP]",
         "wakeUpTip": "Join this server to wake it up!"
       },
       "serverActions": {
-        "disconnectReason": "Server is asleep right now, starting it up... Come back in %s seconds!"
+        "help": "help - show this help page\nreloadConfig - initialize configs again\nstartServer - forcefully start Minecraft server\nstop, exit - shutdown Nighty Night",
+        "unknownCommand": "Unknown command.",
+        "disconnectReason": "Server is asleep right now, starting it up... Come back in a minute!"
       }
     },
     "uk": {
       "error": {
         "configTomlParseError": "Сталася помилка під час читання config.toml: %s",
         "serverIconReadError": "Сталася помилка під час читання server-icon.png: %s, використовуємо стандартну іконку...",
-        "serverLaunchError": "Сталася помилка під час запуску серверу: %s, перезавантажуємо міні-сервер...",
-        "serverPropertiesParseError": "Сталася помилка під час читання server.properties: %s"
+        "serverLaunchError": "Сталася помилка під час запуску серверу Minecraft: %s, перезавантажуємо міні-сервер...",
+        "serverPropertiesParseError": "Сталася помилка під час читання server.properties: %s",
+        "serverStdin": "Не вдалося отримати stdin процесу зі сервером Minecraft"
+      },
+      "watchdog": {
+        "serverCrashed": "Сервер Minecraft закінчив роботу з помилкою. Перезапуск через %s секунд..."
       },
       "log": {
         "configInit": "Ініціалізація налаштувань...",
         "defaultServerVersion": "Використовуємо стандартну версію сервера: %s",
-        "interrupt": "Отримано сигнал переривання, вимикаємо сервер...",
-        "realServerStarting": "Отримано з'єднання, запуск серверу Minecraft в папці %s з такими параметрами запуску: %s",
-        "serverInit": "Запуск Nighty Night v%s...",
-        "serverRestarting": "Справжній сервер завершив роботу, ініціалізуємо міні-сервер знову...",
-        "serverStarted": "Сервер версії %s запущено на %s:%s..."
+        "interrupt": "Отримано сигнал переривання!",
+        "realServerStarting": "Запуск серверу Minecraft в папці %s з такими параметрами запуску: %s",
+        "nightyInit": "Запуск Nighty Night v%s...",
+        "nightyClose": "Вимикаємо Nighty Night...",
+        "serverStop": "Вимикаємо міні-сервер...",
+        "serverStopMinecraft": "Вимикаємо сервер Minecraft...",
+        "serverRestarting": "Ініціалізуємо міні-сервер знову...",
+        "serverStarted": "Сервер версії %s запущено на %s:%s (час запуску - %s сек). Для отримання допомоги напишіть \"help\""
       },
       "motd": {
         "sleepPrefix": "[СПИТЬ]",
         "wakeUpTip": "Доєднайтеся до серверу, щоб прокинути його!"
       },
       "serverActions": {
-        "disconnectReason": "Сервер наразі у режимі сну, вмикаємо... Поверніться через %s секунд!"
+        "help": "help - показати цю справку\nreloadConfig - переініціалізувати налаштування\nstartServer - запустити сервер Minecraft саме зараз\nstop, exit - вимкнути Nighty Night",
+        "unknownCommand": "Невідома команда.",
+        "disconnectReason": "Сервер наразі у режимі сну, вмикаємо... Поверніться через хвилинку!"
       }
     }
   }
